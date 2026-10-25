@@ -17,7 +17,7 @@ public sealed class MainForm : Form
 
     private string _current = "0";
     private double? _accumulator;
-    private int? _pendingOp;
+    private long? _pendingOp;
     private bool _freshResult;
 
     public MainForm()
@@ -104,7 +104,7 @@ public sealed class MainForm : Form
         AddKey(keys, "6", 2, 2, _ => Digit("6"));
         AddKey(keys, "×", 2, 3, _ => Binary(GpuCalculatorNative.OpMul, "×"));
         AddKey(keys, "±", 2, 4, _ => ToggleSign());
-        AddKey(keys, "pow", 2, 5, _ => Binary(GpuCalculatorNative.OpPow, "^"));
+        AddKey(keys, "xʸ", 2, 5, _ => Binary(GpuCalculatorNative.OpPow, "xʸ"));
 
         AddKey(keys, "1", 3, 0, _ => Digit("1"));
         AddKey(keys, "2", 3, 1, _ => Digit("2"));
@@ -207,10 +207,10 @@ public sealed class MainForm : Form
     private bool TryParseCurrent(out double v) =>
         double.TryParse(_current, NumberStyles.Float, CultureInfo.InvariantCulture, out v);
 
-    private void Binary(int op, string symbol)
+    private void Binary(long op, string symbol)
     {
         if (!TryParseCurrent(out var a)) return;
-        if (_pendingOp is int p && _accumulator is double acc)
+        if (_pendingOp is long p && _accumulator is double acc)
         {
             // 连续运算：先结算前一个
             _accumulator = RunBinary(p, acc, a, symbol);
@@ -226,7 +226,7 @@ public sealed class MainForm : Form
 
     private void Evaluate()
     {
-        if (_pendingOp is not int op || _accumulator is not double acc) return;
+        if (_pendingOp is not long op || _accumulator is not double acc) return;
         if (!TryParseCurrent(out var b)) return;
         var symbol = OpSymbol(op);
         _accumulator = RunBinary(op, acc, b, symbol);
@@ -234,7 +234,7 @@ public sealed class MainForm : Form
         _freshResult = true;
     }
 
-    private double RunBinary(int op, double a, double b, string symbol)
+    private double RunBinary(long op, double a, double b, string symbol)
     {
         double gpuMs = 0, cpuMs = 0;
         double gpuResult = double.NaN, cpuResult;
@@ -250,7 +250,7 @@ public sealed class MainForm : Form
         return result;
     }
 
-    private void Unary(int op, string name)
+    private void Unary(long op, string name)
     {
         if (!TryParseCurrent(out var a)) return;
         double gpuMs = 0, cpuMs = 0;
@@ -273,13 +273,13 @@ public sealed class MainForm : Form
         return (cpuMs / gpuMs).ToString("F2") + "x";
     }
 
-    private static string OpSymbol(int op) => op switch
+    private static string OpSymbol(long op) => op switch
     {
         GpuCalculatorNative.OpAdd => "+",
         GpuCalculatorNative.OpSub => "−",
         GpuCalculatorNative.OpMul => "×",
         GpuCalculatorNative.OpDiv => "÷",
-        GpuCalculatorNative.OpPow => "^",
+        GpuCalculatorNative.OpPow => "xʸ",
         _ => "?"
     };
 

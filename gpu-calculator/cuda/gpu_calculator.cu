@@ -26,7 +26,7 @@
 #define UN_OP_ABS  6
 
 // Shared by kernel (device) and CPU fallback (host)
-__host__ __device__ double calc_binary(int op, double a, double b) {
+__host__ __device__ double calc_binary(long long op, double a, double b) {
     switch (op) {
         case BIN_OP_ADD: return a + b;
         case BIN_OP_SUB: return a - b;
@@ -37,7 +37,7 @@ __host__ __device__ double calc_binary(int op, double a, double b) {
     }
 }
 
-__host__ __device__ double calc_unary(int op, double a) {
+__host__ __device__ double calc_unary(long long op, double a) {
     switch (op) {
         case UN_OP_SIN:  return sin(a);
         case UN_OP_COS:  return cos(a);
@@ -50,11 +50,11 @@ __host__ __device__ double calc_unary(int op, double a) {
     }
 }
 
-__global__ void kernel_binary(int op, double a, double b, double* out) {
+__global__ void kernel_binary(long long op, double a, double b, double* out) {
     *out = calc_binary(op, a, b);
 }
 
-__global__ void kernel_unary(int op, double a, double* out) {
+__global__ void kernel_unary(long long op, double a, double* out) {
     *out = calc_unary(op, a);
 }
 
@@ -87,7 +87,7 @@ __declspec(dllexport) void CalcShutdown() {
 }
 
 // GPU binary op: a <op> b -> *out, *gpuMs = GPU kernel time in ms
-__declspec(dllexport) int CalcBinary(int op, double a, double b, double* out, double* gpuMs) {
+__declspec(dllexport) int CalcBinary(long long op, double a, double b, double* out, double* gpuMs) {
     int rc = ensure_ready();
     if (rc != CALC_OK) return rc;
     if (op < BIN_OP_ADD || op > BIN_OP_POW) return CALC_ERR_INVALID;
@@ -113,7 +113,7 @@ __declspec(dllexport) int CalcBinary(int op, double a, double b, double* out, do
 }
 
 // GPU unary op: <op>(a) -> *out, *gpuMs = GPU kernel time in ms
-__declspec(dllexport) int CalcUnary(int op, double a, double* out, double* gpuMs) {
+__declspec(dllexport) int CalcUnary(long long op, double a, double* out, double* gpuMs) {
     int rc = ensure_ready();
     if (rc != CALC_OK) return rc;
     if (op < UN_OP_SIN || op > UN_OP_ABS) return CALC_ERR_INVALID;
@@ -139,7 +139,7 @@ __declspec(dllexport) int CalcUnary(int op, double a, double* out, double* gpuMs
 }
 
 // CPU comparison: same math as kernel, executed on host
-__declspec(dllexport) double CpuBinary(int op, double a, double b, double* cpuMs) {
+__declspec(dllexport) double CpuBinary(long long op, double a, double b, double* cpuMs) {
     auto t0 = std::chrono::steady_clock::now();
     double r = calc_binary(op, a, b);
     auto t1 = std::chrono::steady_clock::now();
@@ -147,7 +147,7 @@ __declspec(dllexport) double CpuBinary(int op, double a, double b, double* cpuMs
     return r;
 }
 
-__declspec(dllexport) double CpuUnary(int op, double a, double* cpuMs) {
+__declspec(dllexport) double CpuUnary(long long op, double a, double* cpuMs) {
     auto t0 = std::chrono::steady_clock::now();
     double r = calc_unary(op, a);
     auto t1 = std::chrono::steady_clock::now();

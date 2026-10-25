@@ -1,3 +1,14 @@
+---
+AIGC:
+    Label: "1"
+    ContentProducer: 001191440300708461136T1XGW3
+    ProduceID: 723ed3197ce4c60a0f4dc5c508935f55_0f0f5774d04311f1a443525400393706
+    ReservedCode1: acSUajazErsSKDl6KA5Iirgov4isVBfayu259VwR4+qDXgP8WtsaNC1Wn4u9bvb5ckFCyy9BxQ6TREWUGG3JK1WiVl6qRVtj4BgjuMVAWa9ujlKTdiDTshO8exK10mwHFrfGirbVev+7lyVihf5NX7qP+TqB1U7zFIhYEx8DKS7WzUfHxPt1wiuSHi0=
+    ContentPropagator: 001191440300708461136T1XGW3
+    PropagateID: 723ed3197ce4c60a0f4dc5c508935f55_0f0f5774d04311f1a443525400393706
+    ReservedCode2: acSUajazErsSKDl6KA5Iirgov4isVBfayu259VwR4+qDXgP8WtsaNC1Wn4u9bvb5ckFCyy9BxQ6TREWUGG3JK1WiVl6qRVtj4BgjuMVAWa9ujlKTdiDTshO8exK10mwHFrfGirbVev+7lyVihf5NX7qP+TqB1U7zFIhYEx8DKS7WzUfHxPt1wiuSHi0=
+---
+
 # gpu-calculator — GPU 科学计算器
 
 纯传统科学计算器：**CUDA C++ kernel 编译为 DLL** + **C# WinForms (.NET 8) P/Invoke** 调用。
@@ -66,3 +77,4 @@ dotnet run --project GpuCalculator.csproj
 - **GPU 计时**：kernel 前后用 `cudaEventRecord` + `cudaEventElapsedTime` 精确测量单次 kernel 耗时。
 - **CPU 对比**：DLL 内使用与 kernel 完全相同的计算逻辑在宿主端执行，`std::chrono::steady_clock` 计时。
 - **一次运算一次 kernel**：`kernel_binary<<<1,1>>>` / `kernel_unary<<<1,1>>>`，结果经 `cudaMemcpy` 回传 C#。
+*（内容由AI生成，仅供参考）*
