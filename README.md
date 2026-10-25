@@ -40,6 +40,24 @@ git clone <your-repo-url> my-workspace
 cd my-workspace
 ```
 
+## Click Counter
+
+`click-counter/` is a small WinForms counter app (net8.0-windows). Launch it
+with the one-click startup script from the repository root:
+
+```bat
+start-click-counter.bat
+```
+
+The script tries the already-built executable first
+(`click-counter\bin\...\click-counter.exe`) and falls back to `dotnet run`
+from the project folder when the exe is missing. Build manually with:
+
+```bash
+cd click-counter
+dotnet build
+```
+
 ## Contact
 
 - GitHub: [@your-name](https://github.com/your-name)
