@@ -12,6 +12,10 @@ obj/
 out/
 build/
 dist/
+native/
+*.dll
+*.lib
+*.exp
 
 # Temp & cache
 temp/

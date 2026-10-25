@@ -1,3 +1,14 @@
+---
+AIGC:
+    Label: "1"
+    ContentProducer: 001191440300708461136T1XGW3
+    ProduceID: 723ed3197ce4c60a0f4dc5c508935f55_c5b080cbd03911f1b37d525400248c00
+    ReservedCode1: Dk48NugEmUhqNR1TI5otExAdbspP0YJYKZokDXG4gW+dkV5fvXNIgEEU4auk8uFJ5zwvSum/2SwIxN3A4yt3YKuX3cSXKt/QXBZ0wBCEGiDdYyliB57zL5MoOKJ+32BolOspekFj1uagwQplne6ClLTE+1v9hPwqTRtQ02f4nYF+5QGfzaDArGTridw=
+    ContentPropagator: 001191440300708461136T1XGW3
+    PropagateID: 723ed3197ce4c60a0f4dc5c508935f55_c5b080cbd03911f1b37d525400248c00
+    ReservedCode2: Dk48NugEmUhqNR1TI5otExAdbspP0YJYKZokDXG4gW+dkV5fvXNIgEEU4auk8uFJ5zwvSum/2SwIxN3A4yt3YKuX3cSXKt/QXBZ0wBCEGiDdYyliB57zL5MoOKJ+32BolOspekFj1uagwQplne6ClLTE+1v9hPwqTRtQ02f4nYF+5QGfzaDArGTridw=
+---
+
 # My Workspace
 
 > Crafting worlds, one block and one frame at a time.
@@ -66,3 +77,4 @@ dotnet build
 ---
 
 *Made with a pickaxe and a timeline.*
+*（内容由AI生成，仅供参考）*

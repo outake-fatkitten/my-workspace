@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>GpuCalculator</RootNamespace>
+    <AssemblyName>GpuCalculator</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 编译期若 native DLL 已生成则自动拷贝到输出目录 -->
+    <Content Include="..\native\gpu_calculator_cuda.dll" Condition="Exists('..\native\gpu_calculator_cuda.dll')">
+      <Link>gpu_calculator_cuda.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
