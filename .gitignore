@@ -1,0 +1,45 @@
+# Visual Studio
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build output
+bin/
+obj/
+out/
+build/
+dist/
+
+# Temp & cache
+temp/
+tmp/
+*.tmp
+*.log
+.cache/
+__pycache__/
+*.pyc
+
+# IDE & OS
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Blender
+blend1/
+*.blend1
+*.blend2
+
+# Environment & secrets
+.env
+.env.*
+*.key
+*.pem
+
+# Git
+*.orig
+*.rej
